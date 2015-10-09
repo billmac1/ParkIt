@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ParkedHere</string>
+
+    <string name="welcome">Welcome to ParkedHere!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_parked">Parked</string>
+</resources>
