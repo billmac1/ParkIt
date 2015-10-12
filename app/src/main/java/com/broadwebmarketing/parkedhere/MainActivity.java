@@ -2,8 +2,8 @@ package com.broadwebmarketing.parkedhere;
 
 import android.content.Context;
 import android.location.Location;
-import android.location.LocationManager;
 import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -11,24 +11,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button parkedButton;
+    TextView textElement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         LocationListener mlocListener = new MyLocationListener();
-        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
+        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 10, mlocListener);
         this.parkedButton = (Button)this.findViewById(R.id.parked);
         this.parkedButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //*get my location
+                TextView textOut = (TextView) findViewById(R.id.textView2);
+                String text = (String) textOut.getText();
+                text = "Parked: " + text;
+                textOut.setText(text);
             }
         });
     }
@@ -64,9 +69,10 @@ public class MainActivity extends AppCompatActivity {
             loc.getLatitude();
             loc.getLongitude();
             String Text = "My current location is: " + "Latitude = " + loc.getLatitude()
-                    + "Longitude = " + loc.getLongitude();
+                    + " Longitude = " + loc.getLongitude();
+            TextView newText = (TextView) findViewById(R.id.textView2);
+            newText.setText(Text);
 
-            Toast.makeText( getApplicationContext(),Text, Toast.LENGTH_SHORT).show();
         }
 
         @Override
