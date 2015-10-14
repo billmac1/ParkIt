@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button parkedButton;
-    TextView textElement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         this.parkedButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView textOut = (TextView) findViewById(R.id.textView2);
+            /*    TextView textOut = (TextView) findViewById(R.id.textLat);
                 String text = (String) textOut.getText();
                 text = "Parked: " + text;
-                textOut.setText(text);
+                textOut.setText(text); */
             }
         });
     }
@@ -66,13 +65,17 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onLocationChanged(Location loc){
-            loc.getLatitude();
-            loc.getLongitude();
-            String Text = "My current location is: " + "Latitude = " + loc.getLatitude()
-                    + " Longitude = " + loc.getLongitude();
-            TextView newText = (TextView) findViewById(R.id.textView2);
-            newText.setText(Text);
-
+           /* write to variable & store in firebase   */
+            double myLat  = loc.getLatitude();
+            double myLong = loc.getLongitude();
+            /* String textLat = "My current location is: " + "Latitude = " + myLat
+                    + " Longitude = " + myLong; */
+            String textLat = "Latitude = " + myLat;
+            String textLong = "Longitude = " + myLong;
+            TextView newText = (TextView) findViewById(R.id.textLat);
+            newText.setText(textLat);
+            TextView newText2 = (TextView) findViewById(R.id.textLong);
+            newText2.setText(textLong);
         }
 
         @Override
